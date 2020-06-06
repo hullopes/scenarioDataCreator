@@ -5,8 +5,8 @@ BSs = ['BS1','BS2']
 UEs = ['UE1','UE2']
 Lks = ['Lh','Lm','Nh','Nm']
 hei = [5, 3, 2, 1]
-custo_link =[4, 3, 4, 9]
-custo_bs = [2, 2, 3, 3]
+cost_link =[4, 3, 4, 9]
+cost_bs = [2, 2, 3, 3]
 
 states = {}
 
@@ -37,10 +37,10 @@ def getPoints(item):
         bs = i[7:10]
         points = points + hei[Lks.index(lk)]
         if lk in elks and bs in ebs:
-            points = points - custo_link[Lks.index(lk)]
+            points = points - cost_link[Lks.index(lk)]
         else:
             if bs in ebs:
-                points = points - custo_bs[Lks.index(lk)]
+                points = points - cost_bs[Lks.index(lk)]
         elks.append(lk)
         ebs.append(bs)
     return points
