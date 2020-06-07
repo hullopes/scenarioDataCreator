@@ -1,5 +1,5 @@
-import itertools
 import csv
+import random
 
 Reward = {}
 
@@ -14,6 +14,14 @@ read_file()
 
 #print(Reward)
 #print(len(Reward))
+
+def sortS2(Reward):
+    k = list(Reward.items())
+    i = random.randint(0, len(Reward))
+    num = k[i][0]
+    return k[i][0]
+
+
 with open('transitions.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     for k, v in Reward.items():
@@ -28,20 +36,16 @@ with open('transitions.csv', 'w', newline='') as file:
         s2 = k
         p=0.0
         if v >= 7.0:
-            #st=st+",[("+k3[0]+"->"+k3[1]+"<-"+k3[2]+")-("+k3[3]+"->"+k3[4]+"<-"+k3[5]+")]"
-            #st=st+","+k+",0.8"
             p=0.8
         elif v < 7.0 and v >= 5.0:
-            #st = st + ",[(" + k3[0] + "->" + k3[1] + "<-" + k3[2] + ")-(" + k3[3] + "->" + k3[4] + "<-" + k3[5] + ")]"
-            #st = st + "," + k + ",0.5"
             p=0.5
         elif v < 5.0 and v >= 1.2:
-            #st = st + ",[(" + k3[0] + "->" + k3[1] + "<-" + k3[2] + ")-(" + k3[3] + "->" + k3[4] + "<-" + k3[5] + ")]"
-            #st = st + "," + k + ",0.2"
             p=0.2
         else:
-            #st = st + ",[(" + k3[0] + "->" + k3[1] + "<-" + k3[2] + ")-(" + k3[3] + "->" + k3[4] + "<-" + k3[5] + ")]"
-            #st = st + "," + k + ",0.1"
             p=0.1
         #print(st)
         writer.writerow([s1, act, s2, p])
+        #generating n aleatory s2 output
+        n=5
+        sort_s2 = sortS2(Reward)
+        writer.writerow([s1, act, sort_s2, 0.1])
